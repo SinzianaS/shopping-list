@@ -14,15 +14,16 @@
 			<header class="header">
 				<h1>shopping items</h1>
 				<form th:action="@{/}" method="post" th:object="${item}">
-					<input class="new-todo" placeholder="What needs to be added?" autofocus>
+					<input class="new-todo" placeholder="What needs to be added?" autofocus th:field="*{title}">
 				</form>
 			</header>
 
 			<section class="main" th:if="${totalNumberOfItems > 0}">
 				<input id="toggle-all" class="toggle-all" type="checkbox">
 				<label for="toggle-all">Mark all as complete</label>
-				<ul class="todo-list">
-
+				<ul class="todo-list"th:remove="all-but-first">
+				    <li th:insert="fragments :: shoppingItem(${item})" th:each="item : ${shoppingItems}" th:remove="tag">
+					</li>
 					<li class="completed">
 						<div class="view">
 							<input class="toggle" type="checkbox" checked>

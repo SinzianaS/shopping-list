@@ -1,0 +1,12 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<li th:fragment="shoppingItem(item)">
+    <div class="view">
+        <input class="toggle" type="checkbox"/>
+        <label th:text="${item.title}">Taste Java</label>
+        <button class="destroy"></button>
+    </div>
+    <input class="edit" value="Create a Shopping List template">
+</li>
+</html>
