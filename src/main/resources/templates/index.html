@@ -13,7 +13,9 @@
 		<section class="todoapp">
 			<header class="header">
 				<h1>shopping items</h1>
-				<input class="new-todo" placeholder="What needs to be added?" autofocus>
+				<form th:action="@{/}" method="post" th:object="${item}">
+					<input class="new-todo" placeholder="What needs to be added?" autofocus>
+				</form>
 			</header>
 
 			<section class="main" th:if="${totalNumberOfItems > 0}">
