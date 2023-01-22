@@ -1,19 +1,19 @@
 <!doctype html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Shopping List</title>
-		<link rel="stylesheet" href="node_modules/todomvc-common/base.css">
-		<link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
-
-		<link rel="stylesheet" href="css/app.css">
+		<link rel="stylesheet" th:href="@{/webjars/todomvc-common/base.css}">
+  		<link rel="stylesheet" th:href="@{/webjars/todomvc-app-css/index.css}">
 	</head>
 	<body>
 		<section class="todoapp">
 			<header class="header">
-				<h1>todos</h1>
-				<input class="new-todo" placeholder="What needs to be done?" autofocus>
+				<h1>shopping items</h1>
+				<input class="new-todo" placeholder="What needs to be added?" autofocus>
 			</header>
 
 			<section class="main">
@@ -24,7 +24,7 @@
 					<li class="completed">
 						<div class="view">
 							<input class="toggle" type="checkbox" checked>
-							<label>Taste JavaScript</label>
+							<label>Taste Java</label>
 							<button class="destroy"></button>
 						</div>
 						<input class="edit" value="Create a Shopping List template">
@@ -61,10 +61,9 @@
 		</section>
 		<footer class="info">
 			<p>Double-click to edit a shopping item</p>
-			<p>Created by SinzianS</a></p>
+			<p>Created by SinzianaS</a></p>
 
 		</footer>
-		<script src="node_modules/todomvc-common/base.js"></script>
-		<script src="js/app.js"></script>
+		<script th:src="@{/webjars/todomvc-common/base.js}"></script>
 	</body>
 </html>
