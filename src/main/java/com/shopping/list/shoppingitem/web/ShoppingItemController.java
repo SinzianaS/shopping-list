@@ -1,14 +1,12 @@
 package com.shopping.list.shoppingitem.web;
 
 import com.shopping.list.shoppingitem.ShoppingItem;
+import com.shopping.list.shoppingitem.ShoppingItemNotFoundException;
 import com.shopping.list.shoppingitem.ShoppingItemRepository;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,6 +31,16 @@ public class ShoppingItemController {
     @PostMapping
     public String addNewShoppingItem(@Valid @ModelAttribute("item") ShoppingItemFormData formData) {
         repository.save(new ShoppingItem(formData.getTitle(), false));
+        return "redirect:/";
+    }
+    @PutMapping("/{id}/toggle")
+    public String toggleSelection(@PathVariable("id") Long id) {
+        ShoppingItem shoppingItem = repository.findById(id)
+                                              .orElseThrow();
+
+
+        shoppingItem.setCompleted(!shoppingItem.isCompleted());
+        repository.save(shoppingItem);
         return "redirect:/";
     }
 

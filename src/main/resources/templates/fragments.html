@@ -1,10 +1,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       lang="en">
-<li th:fragment="shoppingItem(item)">
+<li th:fragment="shoppingItem(item)" th:classappend="${item.completed?'completed':''}">
     <div class="view">
-        <input class="toggle" type="checkbox"/>
-        <label th:text="${item.title}">Taste Java</label>
+        <form th:action="@{/{id}/toggle(id=${item.id})}" th:method="put">
+            <input class="toggle" type="checkbox"
+                   onchange="this.form.submit()"
+                   th:attrappend="checked=${item.completed?'true':null}">
+            <label th:text="${item.title}">Taste Java</label>
+        </form>
         <button class="destroy"></button>
     </div>
     <input class="edit" value="Create a Shopping List template">
