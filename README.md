@@ -20,4 +20,4 @@ via WebJars.
 ## How To Use
 
 To use Shopping List, simply start the application and navigate to the home page. You can add 
-new items, mark them as completed, filter active items and delete them.
+new items, mark them as completed and delete them.
