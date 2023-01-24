@@ -33,10 +33,11 @@ public class ShoppingItemController {
         repository.save(new ShoppingItem(formData.getTitle(), false));
         return "redirect:/";
     }
+
     @PutMapping("/{id}/toggle")
     public String toggleSelection(@PathVariable("id") Long id) {
         ShoppingItem shoppingItem = repository.findById(id)
-                                              .orElseThrow();
+                .orElseThrow();
 
 
         shoppingItem.setCompleted(!shoppingItem.isCompleted());
@@ -44,14 +45,33 @@ public class ShoppingItemController {
         return "redirect:/";
     }
 
+    @DeleteMapping("/{id}")
+    public String deleteTodoItem(@PathVariable("id") Long id) {
+        repository.deleteById(id);
+
+        return "redirect:/";
+    }
+    @PutMapping("/{id}/edit")
+    public String editShoppingItem(@PathVariable("id") Long id,
+                                   @Valid @ModelAttribute("item")
+                                   ShoppingItemFormData formData) {
+        ShoppingItem shoppingItem = repository.findById(id)
+                .orElseThrow();
+        shoppingItem.setTitle(formData.getTitle());
+        repository.save(shoppingItem);
+        return "redirect:/";
+    }
+
+
     private List<ShoppingItemDto> getShoppingItems() {
         return repository.findAll()
                 .stream()
                 .map(shoppingItem -> new ShoppingItemDto(shoppingItem.getId(),
-                                                         shoppingItem.getTitle(),
-                                                         shoppingItem.isCompleted()))
+                        shoppingItem.getTitle(),
+                        shoppingItem.isCompleted()))
                 .collect(Collectors.toList());
     }
+
     public static record ShoppingItemDto(long id, String title, boolean completed) {
     }
 

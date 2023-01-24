@@ -10,8 +10,6 @@ is developed using Spring Boot, Spring Data JPA, H2 database and Thymeleaf templ
 - Show list of items
 - Item completion
 - Delete an item
-- Show number of uncompleted items
-- Filter active items
 - Clear completed items
 - Mark all as completed
 
